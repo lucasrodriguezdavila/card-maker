@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import { Box } from '@chakra-ui/react';
 import './App.css';
+import { Card } from './components/Card/Card';
+import { JsonInputSection } from './components/JsonInputSection/JsonInputSection';
+import React, {useState} from 'react'
 
 function App() {
+
+  const [value, setValue] = useState("")
+
+  const handleInputChange = (e) => {
+    let inputValue = e.target.value
+    console.log("a")
+    setValue(inputValue)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box bg="blue.100" d="flex">
+      <Box >
+        <JsonInputSection handleInputChange={handleInputChange} value={value}></JsonInputSection>
+      </Box>
+      <Box w="50vw" display="flex" alignItems="center" justifyContent="center">
+        <Card>{value}</Card>
+      </Box>
+    </Box>
   );
 }
 
